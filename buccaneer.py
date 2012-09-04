@@ -1,6 +1,6 @@
 from urllib2 import urlopen
 from BeautifulSoup import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 
 def enum(**enums):
@@ -36,10 +36,16 @@ def _parse_search_result_table_row(tr):
 	res['name'] = linkName.contents[0]
 	res['link'] = linkName["href"]
 	descString = tds[1].find("font").contents[0].replace("&nbsp;", " ")
-	m = re.search("^Uploaded (\d\d-\d\d) (\d{4}|\d\d:\d\d), Size (\d+.\d* (?:[KMG]iB))", descString)
+	m = re.search("^Uploaded (Today|Y-day|\d\d-\d\d) (\d{4}|\d\d:\d\d), Size (\d+.\d* (?:[KMG]iB))", descString)
 	res['size'] = m.group(3)
+	now = datetime.today()
 	if re.match("\d{4}", m.group(2)) == None:
-		res['time'] = datetime.strptime(m.group(1) + "-" + str(datetime.now().year) + " " + m.group(2), "%m-%d-%Y %H:%M")
+		if m.group(1) == "Today":
+			res['time'] = datetime.strptime(now.strftime("%m-%d-%Y") + " " + m.group(2), "%m-%d-%Y %H:%M")
+		elif m.group(1) == "Y-day":
+			res['time'] = datetime.strptime((now + timedelta(-1)).strftime("%m-%d-%Y") + " " + m.group(2), "%m-%d-%Y %H:%M")
+		else:
+			res['time'] = datetime.strptime(m.group(1) + "-" + str(now.year) + " " + m.group(2), "%m-%d-%Y %H:%M")
 	else:
 		res['time'] = datetime.strptime(m.group(1) + "-" + m.group(2), "%m-%d-%Y")
 	res['seeders'] = int(tds[2].contents[0])
