@@ -5,8 +5,9 @@ Buccaneer is an unofficial API for The Pirate Bay (http://www.thepiratebay.se). 
 
 ## Example of usage
 
+.. code-block:: python
 	>>> import buccaneer
-	>>> results = bucaneer.search('Weeds s08e04 720p', 0, buccaneer.order_by.SEEDERS)
+	>>> results = buccaneer.search('Weeds s08e04 720p', 0, buccaneer.order_by.SEEDERS)
 	>>> for r in results:
 	... 	print '{0} {1:5d}   {2}'.format(r['name'].ljust(45), r['seeders'], r['magnet'])
 	...
