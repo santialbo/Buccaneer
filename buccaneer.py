@@ -6,9 +6,9 @@ import re
 def enum(**enums):
     return type('Enum', (), enums)
 
-order_by = enum(NAME = 1, SIZE = 3, UPLOADER = 5, SEEDERS = 7, LEECHERS = 9, TYPE = 13)
+ORDER_BY = enum(NAME = 1, SIZE = 3, UPLOADER = 5, SEEDERS = 7, LEECHERS = 9, TYPE = 13)
 
-def search(searchString, pageNumber = 0, orderBy = order_by.UPLOADER):
+def search(searchString, pageNumber = 0, orderBy = ORDER_BY.UPLOADER):
 	url = ''.join(["http://thepiratebay.se/search/",
 		   searchString.replace(" ", "%%20"),
 		   "/" + str(pageNumber) + "/" + str(orderBy)])
@@ -23,7 +23,7 @@ def search(searchString, pageNumber = 0, orderBy = order_by.UPLOADER):
 
 def _parse_search_result_table(table):
 	trs = table.findAll("tr")
-	del trs[0]
+	del trs[:2]
 	results = []
 	for tr in trs:
 		results.append(_parse_search_result_table_row(tr))
