@@ -49,7 +49,7 @@ def _parse_search_result_table_row(tr):
     res['link'] = link_name["href"]
     desc_string = tds[1].find("font").contents[0].replace("&nbsp;", " ")
     m = re.search(r"^Uploaded (Today|Y-day|\d\d-\d\d) (\d{4}|\d\d:\d\d), " +
-                  r"Size (\d+.\d* (?:[KMG]iB))", desc_string)
+            r"Size (\d+(?:.\d*)? (?:[KMG]iB))", desc_string)
     res['size'] = m.group(3)
     now = datetime.today()
     if re.match(r"\d{4}", m.group(2)) == None:
