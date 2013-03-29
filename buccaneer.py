@@ -45,7 +45,7 @@ def _parse_search_result_table_row(tr):
     res = {}
     tds = tr.findAll("td")
     link_name = tds[1].find("a", {"class": "detLink"})
-    res['name'] = link_name.contents[0]
+    res['name'] = link_name.contents[0].encode('utf-8').strip()
     res['link'] = link_name["href"]
     desc_string = tds[1].find("font").contents[0].replace("&nbsp;", " ")
     m = re.search(r"^Uploaded (Today|Y-day|\d\d-\d\d) (\d{4}|\d\d:\d\d), " +
