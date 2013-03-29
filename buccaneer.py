@@ -35,7 +35,7 @@ def search(search_string, page = 0, order_by = ORDER_BY.UPLOADER):
 
 def _parse_search_result_table(table):
     trs = table.findAll("tr")
-    del trs[:2]
+    del trs[:1]
     results = []
     for tr in trs:
         results.append(_parse_search_result_table_row(tr))
