@@ -1,7 +1,6 @@
 # Buccaneer
 
-Buccaneer is an unofficial API for The Pirate Bay (http://www.thepiratebay.se). You can use it for searching torrents in TPB easily.
-
+Buccaneer scrapes the results for search queries on The Pirate Bay (http://www.thepiratebay.se).
 
 ## Example of usage
 
