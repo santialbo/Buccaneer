@@ -7,6 +7,9 @@ from datetime import datetime, timedelta
 import re
 
 def enum(**enums):
+    """
+    Lets define enums
+    """
     return type('Enum', (), enums)
 
 ORDER_BY = enum(NAME = 1,
@@ -74,3 +77,4 @@ def _parse_search_result_table_row(tr):
     res['leechers'] = int(tds[3].contents[0])
     res['magnet'] = tds[1].find("img", {"alt": "Magnet link"}).parent['href']
     return res
+
