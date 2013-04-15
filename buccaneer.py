@@ -14,7 +14,8 @@ ORDER_BY = enum(NAME = 1,
                 UPLOADER = 5,
                 SEEDERS = 7,
                 LEECHERS = 9,
-                TYPE = 13)
+                TYPE = 13,
+                UPLOADED = 99)
 
 def search(search_string, page = 0, order_by = ORDER_BY.UPLOADER):
     """
