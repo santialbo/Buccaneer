@@ -1,8 +1,18 @@
 # Buccaneer
 
-Buccaneer scrapes the results for search queries on The Pirate Bay (http://www.thepiratebay.se).
+Buccaneer scrapes the results for search queries on [The Pirate Bay](http://www.thepiratebay.se).
 
-## Example of usage
+## Installing
+
+Install the dependencies with:
+
+```
+pip install -r requirements.txt
+```
+
+## Use
+
+Use the `search` function in order to perform a query. The parameters are the query string, an optional page number, and an optional "order by".
 
 ```python
 >>> import buccaneer
